@@ -4,15 +4,39 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("General")]
+    [SerializeField] private Transform camerePlayer;
+    [SerializeField] private LayerMask hitLayers;
+
+
+    [Header("Shoots parameters")]
+    [SerializeField] private float fireRange = 200f;
+
+
+    private void Start()
     {
-        
+        camerePlayer = GameObject.FindGameObjectWithTag("MainCamera").transform;
+    }
+    private void Update()
+    {
+        HandleShoot();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void HandleShoot()
     {
-        
+        if (Input.GetButtonDown("Fire1"))
+        {
+            RaycastHit hit;
+            
+            if(Physics.Raycast(camerePlayer.position, camerePlayer.forward, out hit, fireRange, hitLayers))
+            {
+                Debug.Log("Disparo");
+            }
+            
+
+        }
     }
+
+
+
 }
