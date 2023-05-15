@@ -8,7 +8,10 @@ public class Victoria : MonoBehaviour
     public GameObject cosa;
 
 
-
+    private void Start()
+    {
+        cosa = GameObject.Find("Weapon info");
+    }
 
 
 
