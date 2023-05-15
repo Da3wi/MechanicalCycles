@@ -28,6 +28,6 @@ public class Away : MonoBehaviour
         Quaternion t_yAngleAdjustment = Quaternion.AngleAxis(t_yLookInput * 1.45f, Vector3.right);
         Quaternion t_targetRotation = originalLR * t_xAngleAdjustment * t_yAngleAdjustment;
 
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, t_targetRotation, Time.deltaTime * 10f);
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, t_targetRotation, Time.deltaTime * 3f);
     }
 }

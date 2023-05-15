@@ -148,6 +148,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   fireRange: 200
+  fireRate: 0.1
+  maxAmmo: 25
+  recoilForce: 3
+  reloadTime: 1.5
 --- !u!114 &2118879880777924779
 MonoBehaviour:
   m_ObjectHideFlags: 0

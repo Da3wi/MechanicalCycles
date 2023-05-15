@@ -13,7 +13,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     public int activeweaponIndex { get; private set; }
 
-    private WeaponController[] weaponSlots = new WeaponController[4]; //Inventario de armas
+    private WeaponController[] weaponSlots = new WeaponController[2]; //Inventario de armas
 
 
     private void Start()
@@ -24,22 +24,36 @@ public class PlayerWeaponController : MonoBehaviour
         {
             AddWeapon(startWeapon);
         }
+
+       
+       
+
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) // primera arma
         {
-            SwitchWeapon(0);
+            SwitchWeapon();
         }
     }
 
-    private void SwitchWeapon(int p_WeaponIndex) // Cambiar armas
+    private void SwitchWeapon() // Cambiar armas
     {
-        if(p_WeaponIndex != activeweaponIndex && p_WeaponIndex >= 0)
+        int tempIndex = (activeweaponIndex + 1) % weaponSlots.Length;
+
+        if (weaponSlots[tempIndex] == null)
+            return;
+
+       
+        foreach(WeaponController weapon in weaponSlots)
         {
-            weaponSlots[p_WeaponIndex].gameObject.SetActive(true); // activa el objeto
-            activeweaponIndex = p_WeaponIndex;
+            if (weapon != null) weapon.gameObject.SetActive(false);
         }
+
+        weaponSlots[tempIndex].gameObject.SetActive(true); // activa el objeto
+        activeweaponIndex = tempIndex;
+
+        EventsManager.current.NewGunEvent.Invoke();
     }
 
 
@@ -52,7 +66,10 @@ public class PlayerWeaponController : MonoBehaviour
             if (weaponSlots[i] == null)
             {
                 WeaponController weaponclone = Instantiate(p_weaponPrefab, weaponParentSocket); // pone el arma en falso se activa poniendo slots
+                weaponclone.owner = gameObject;
                 weaponclone.gameObject.SetActive(false);
+
+                
 
                 weaponSlots[i] = weaponclone;
 

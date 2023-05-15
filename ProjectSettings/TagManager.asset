@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - TimeManager
+  - Enemigo
+  - Boquilla
   layers:
   - Default
   - TransparentFX
@@ -14,13 +16,13 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Enemigos
   - Arma
   - 
   - 
   - 
   - 
-  - 
+  - camerapadre
   - 
   - 
   - 
